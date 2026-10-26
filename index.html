@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Muhammad Azrul Wicaksono</title>
+  <meta name="description" content="Portofolio Muhammad Azrul Wicaksono, mahasiswa Teknik Informatika Universitas Muhammadiyah Sidoarjo: web, aplikasi, game edukasi, dan AI.">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="author" content="Muhammad Azrul Wicaksono">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <!-- Pratinjau saat link dibagikan (WhatsApp, LinkedIn, dll.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:title" content="Muhammad Azrul Wicaksono · Portofolio">
+  <meta property="og:description" content="Mahasiswa Teknik Informatika UMSIDA: web, aplikasi, game edukasi, desain UI, dan AI.">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  <noscript><p class="noscript">Aktifkan JavaScript untuk melihat portofolio ini. Profil GitHub: <a href="https://github.com/azrullio">github.com/azrullio</a></p></noscript>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <div id="app" v-cloak>
+
+    <!-- ================= NAVIGASI ================= -->
+    <header class="nav" :class="{ scrolled: scrolled, open: menuOpen }">
+      <div class="wrap nav-in">
+        <a href="#beranda" class="brand" @click.prevent="go('beranda')">azrul<span>.</span></a>
+
+        <nav class="nav-links" aria-label="Navigasi utama">
+          <a v-for="n in d.nav" :key="n.id" :href="'#' + n.id" :class="{ active: active === n.id }" @click.prevent="go(n.id)">{{ n.label }}</a>
+        </nav>
+
+        <a href="#kontak" class="btn primary sm nav-cta" @click.prevent="go('kontak')">Hubungi Saya</a>
+
+        <button type="button" class="burger" id="burger" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen ? 'true' : 'false'" aria-controls="mobile-menu" :aria-label="menuOpen ? 'Tutup menu' : 'Buka menu'">
+          <i></i><i></i><i></i>
+        </button>
+      </div>
+
+      <transition name="drop">
+        <div v-if="menuOpen" class="mobile-menu" id="mobile-menu">
+          <a v-for="n in d.nav" :key="n.id" :href="'#' + n.id" :class="{ active: active === n.id }" @click.prevent="go(n.id)">{{ n.label }}</a>
+        </div>
+      </transition>
+    </header>
+
+    <main>
+      <!-- ================= BERANDA ================= -->
+      <section id="beranda" class="hero">
+        <div class="wrap hero-grid">
+          <div class="hero-text">
+            <p class="hello hx">Halo semua <span class="wave" aria-hidden="true">👋</span>, saya</p>
+            <h1 class="hx">{{ d.name }}</h1>
+            <p class="hero-sub hx">Mahasiswa {{ d.study }} · <a href="https://umsida.ac.id/" target="_blank" rel="noopener">{{ d.campus }}</a></p>
+            <p class="hero-lead hx">Saya membangun website, aplikasi, game edukasi, dan AI yang bermanfaat untuk orang sekitar, dari game Batik Jetis untuk siswa SD sampai AI agent customer care.</p>
+            <div class="hero-cta hx">
+              <a href="#kontak" class="btn primary" @click.prevent="go('kontak')">Hubungi Saya</a>
+              <a href="#proyek" class="btn ghost" @click.prevent="go('proyek')">Lihat Proyek</a>
+            </div>
+            <dl class="hero-stats hx">
+              <div v-for="h in stats" :key="h.label"><dt>{{ h.value }}</dt><dd>{{ h.label }}</dd></div>
+            </dl>
+          </div>
+
+          <div class="hero-photo hx">
+            <div class="blob" aria-hidden="true"></div>
+            <div class="ring" aria-hidden="true"></div>
+            <img :src="d.photo" :alt="'Foto ' + d.name" width="760" height="636">
+            <span class="float-chip c1"><b>AI</b> Claude · n8n</span>
+            <span class="float-chip c2"><b>Web</b> Vue · Laravel</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TENTANG SAYA ================= -->
+      <section id="tentang" class="section alt">
+        <div class="wrap about-grid">
+          <div class="rv">
+            <p class="eyebrow">Tentang Saya</p>
+            <h2>Developer web &amp; AI, mahasiswa {{ d.study }}</h2>
+            <p v-for="(p, i) in d.about" :key="i" class="body">{{ p }}</p>
+          </div>
+          <div class="rv">
+            <h3 class="sub-title">Spesialisasi &amp; Tech Stack</h3>
+            <div class="skill-groups">
+              <div class="skill-group" v-for="g in d.skills" :key="g.title">
+                <h4>{{ g.title }}</h4>
+                <div class="chips"><span v-for="t in g.items" :key="t">{{ t }}</span></div>
+              </div>
+            </div>
+            <h3 class="sub-title connect">Mari terkoneksi</h3>
+            <div class="socials">
+              <a v-for="s in socials" :key="s.label" :href="s.url" target="_blank" rel="noopener" class="social">{{ s.label }} <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PROYEK ================= -->
+      <section id="proyek" class="section">
+        <div class="wrap">
+          <div class="sec-head center rv">
+            <p class="eyebrow">Proyek</p>
+            <h2>Karya yang pernah saya buat</h2>
+            <p class="lead">Dari AI dan aplikasi kasir sampai game edukasi. Klik gambar untuk melihat tangkapan layar beserta keterangannya.</p>
+          </div>
+
+          <div class="filters rv" role="group" aria-label="Saring proyek">
+            <button v-for="f in d.filters" :key="f.id" type="button" :id="'f-' + f.id" :aria-pressed="filter === f.id ? 'true' : 'false'" @click="setFilter(f.id)">
+              {{ f.label }} <small>{{ countFor(f.id) }}</small>
+            </button>
+          </div>
+
+          <div class="projects">
+            <article class="project rv" v-for="p in d.projects" :key="p.id" v-show="matches(p)" :data-flip-id="p.id">
+              <div class="card lift">
+                <button v-if="p.shots" type="button" class="thumb" @click="openProject(p, 0)" :aria-label="'Lihat gambar ' + p.title">
+                  <img :src="p.shots[0].src" :alt="p.shots[0].caption" loading="lazy">
+                  <span class="thumb-count">{{ p.shots.length }} gambar</span>
+                </button>
+                <div v-else class="thumb placeholder" :class="'ph-' + (p.icon || 'web')" aria-hidden="true">
+                  <span class="ph-icon"></span>
+                </div>
+                <div class="card-body">
+                  <div class="card-meta">
+                    <span class="kind">{{ p.kind }}</span>
+                    <span v-if="p.featured" class="badge accent">Unggulan</span>
+                    <span v-if="p.status" class="badge" :class="{ warn: p.status !== 'Prototipe' }">{{ p.status }}</span>
+                    <span v-if="p.demo" class="badge live">Live</span>
+                  </div>
+                  <h3>{{ p.title }}</h3>
+                  <p>{{ p.text }}</p>
+                  <div class="chips sm"><span v-for="t in p.tags" :key="t">{{ t }}</span></div>
+                  <div class="card-links">
+                    <button v-if="p.shots || p.points" type="button" class="link" @click="openProject(p, 0)">Detail</button>
+                    <a v-if="p.demo" :href="p.demo" target="_blank" rel="noopener" class="link">Lihat demo ↗</a>
+                    <a v-if="p.repo" :href="p.repo" target="_blank" rel="noopener" class="link">GitHub ↗</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= DESAIN ================= -->
+      <section id="desain" class="section alt">
+        <div class="wrap">
+          <div class="sec-head center rv">
+            <p class="eyebrow">Desain</p>
+            <h2>Desain grafis &amp; UI</h2>
+            <p class="lead">Desain yang saya buat di Canva dan Figma. Klik gambar untuk melihatnya lebih besar.</p>
+          </div>
+          <div class="designs">
+            <article class="card design rv" v-for="ds in d.designs" :key="ds.id" :class="{ 'no-media': !ds.shots.length, screens: ds.layout === 'screens' }">
+              <div class="design-media" v-if="ds.shots.length">
+                <button v-for="(s, k) in ds.shots.slice(0, 5)" :key="s.src" type="button" class="dm-item" :class="{ wide: k === 0 }" @click="openGallery(ds.shots, k, ds.title)" :aria-label="'Perbesar: ' + s.caption">
+                  <img :src="s.src" :alt="s.caption" loading="lazy">
+                  <span v-if="k === 4 && ds.shots.length > 5" class="more">+{{ ds.shots.length - 5 }}</span>
+                </button>
+              </div>
+              <div class="design-media placeholder" v-else aria-hidden="true">
+                <span class="figma-mark"><i></i><i></i><i></i><i></i><i></i></span>
+              </div>
+              <div class="design-body">
+                <div class="card-meta">
+                  <span class="kind">{{ ds.kind }}</span>
+                  <span v-for="t in ds.tools" :key="t" class="badge accent">{{ t }}</span>
+                </div>
+                <h3>{{ ds.title }}</h3>
+                <p>{{ ds.text }}</p>
+                <ul v-if="ds.points"><li v-for="pt in ds.points" :key="pt">{{ pt }}</li></ul>
+                <div class="card-links">
+                  <button v-if="ds.shots.length" type="button" class="btn ghost sm" @click="openGallery(ds.shots, 0, ds.title)">Lihat semua ({{ ds.shots.length }})</button>
+                  <a v-if="ds.link" :href="ds.link" target="_blank" rel="noopener" class="btn primary sm">{{ ds.linkLabel || 'Buka' }} ↗</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PENGALAMAN ================= -->
+      <section id="pengalaman" class="section">
+        <div class="wrap">
+          <div class="sec-head center rv">
+            <p class="eyebrow">Pengalaman</p>
+            <h2>Pengabdian, pemateri, &amp; kerja</h2>
+            <p class="lead">Pengalaman di luar kelas yang membentuk cara saya bekerja bersama orang lain.</p>
+          </div>
+
+          <div class="timeline">
+            <article class="exp rv" v-for="(e, i) in d.experience" :key="i">
+              <div class="exp-side">
+                <span class="exp-dot" aria-hidden="true"></span>
+                <span class="exp-period">{{ e.period }}</span>
+              </div>
+              <div class="card exp-card">
+                <div class="card-meta">
+                  <span class="badge accent">{{ e.type }}</span>
+                  <span class="kind">{{ e.place }}</span>
+                </div>
+                <h3>{{ e.title }}</h3>
+                <p class="exp-org">{{ e.org }}</p>
+                <p>{{ e.text }}</p>
+                <ul v-if="e.points.length"><li v-for="pt in e.points" :key="pt">{{ pt }}</li></ul>
+                <div class="media" v-if="e.media.length" :class="e.media.length >= 5 ? 'mosaic' : 'even'" :style="{ '--n': Math.min(e.media.length, 4) }">
+                  <button v-for="(m, k) in e.media.slice(0, e.media.length >= 5 ? 5 : 4)" :key="m.src" type="button" class="media-item" :class="{ big: e.media.length >= 5 && k === 0 }" @click="openGallery(e.media, k, e.title)" :aria-label="'Perbesar: ' + m.caption">
+                    <img :src="m.src" :alt="m.caption" loading="lazy">
+                    <span v-if="m.video" class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+                    <span v-if="e.media.length > 5 && k === 4" class="more">+{{ e.media.length - 5 }} foto</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PENDIDIKAN ================= -->
+      <section id="pendidikan" class="section alt">
+        <div class="wrap">
+          <div class="sec-head center rv">
+            <p class="eyebrow">Pendidikan</p>
+            <h2>Riwayat pendidikan</h2>
+          </div>
+          <div class="edu-list">
+            <article class="card edu rv" v-for="ed in d.education" :key="ed.school">
+              <div class="edu-logo" aria-hidden="true">{{ ed.school.startsWith('SMK') ? 'SMK' : 'UM' }}</div>
+              <div class="edu-body">
+                <div class="card-meta"><span class="badge accent">{{ ed.period }}</span></div>
+                <h3>{{ ed.school }}</h3>
+                <p class="exp-org">{{ ed.degree }}</p>
+                <p>{{ ed.text }}</p>
+                <ul v-if="ed.points.length"><li v-for="pt in ed.points" :key="pt">{{ pt }}</li></ul>
+              </div>
+            </article>
+          </div>
+
+          <template v-if="d.showCerts">
+            <div class="sec-head center rv certs-head">
+              <p class="eyebrow">Sertifikat</p>
+              <h2>Sertifikat &amp; pencapaian</h2>
+              <p class="lead">Klik sertifikat untuk melihatnya lebih besar, termasuk daftar nilainya.</p>
+            </div>
+            <div class="certs">
+              <article class="card cert rv" v-for="c in d.certs" :key="c.id">
+                <button type="button" class="cert-thumb" @click="openGallery(c.shots, 0, c.title)" :aria-label="'Lihat sertifikat: ' + c.title">
+                  <img :src="c.shots[0].src" :alt="c.shots[0].caption" loading="lazy">
+                  <span v-if="c.shots.length > 1" class="cert-pages">{{ c.shots.length }} halaman</span>
+                </button>
+                <div class="cert-body">
+                  <p class="cert-date">{{ c.date }}</p>
+                  <h3>{{ c.title }}</h3>
+                  <p class="cert-issuer">{{ c.issuer }}</p>
+                  <p v-if="c.text" class="cert-text">{{ c.text }}</p>
+                  <span v-if="c.grade" class="badge live">{{ c.grade }}</span>
+                </div>
+              </article>
+            </div>
+          </template>
+        </div>
+      </section>
+
+      <!-- ================= KONTAK ================= -->
+      <section id="kontak" class="section">
+        <div class="wrap">
+          <div class="contact card rv">
+            <div>
+              <p class="eyebrow">Kontak</p>
+              <h2>Hubungi saya</h2>
+              <p class="lead">Terbuka untuk magang, kerja, proyek web, maupun kolaborasi AI. Kirim pesan dan saya akan membalas secepatnya.</p>
+            </div>
+            <div class="contact-side">
+              <div class="contact-row" v-if="d.email">
+                <span class="contact-label">Email</span>
+                <div class="email-box">
+                  <a id="email" class="email-link" :href="'mailto:' + d.email">{{ d.email }}</a>
+                  <button type="button" class="btn primary sm" id="copy-btn" @click="copyEmail">Salin</button>
+                </div>
+              </div>
+              <div class="contact-row">
+                <span class="contact-label">Lokasi</span>
+                <span>{{ d.location }}</span>
+              </div>
+              <div class="socials">
+                <a v-for="s in socials" :key="s.label" :href="s.url" target="_blank" rel="noopener" class="social">{{ s.label }} <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-in">
+        <span>© 2026 {{ d.name }}. Dibuat dengan Vue.js, TypeScript &amp; GSAP.</span>
+        <a href="#beranda" @click.prevent="go('beranda')">Kembali ke atas ↑</a>
+      </div>
+    </footer>
+
+    <!-- ================= GALERI / DETAIL PROYEK ================= -->
+    <transition name="modal">
+      <div class="modal" v-if="gallery" @click.self="closeGallery" role="dialog" aria-modal="true" :aria-label="gallery.title">
+        <div class="modal-card" :class="{ 'with-detail': gallery.project }">
+          <div class="g-media">
+            <div class="g-stage" v-if="gallery.items.length">
+              <transition name="fade">
+                <video v-if="gallery.items[gallery.index].video" :key="gallery.items[gallery.index].video" :poster="gallery.items[gallery.index].src" controls autoplay playsinline>
+                  <source :src="gallery.items[gallery.index].video" type="video/mp4">
+                  <source :src="gallery.items[gallery.index].video.replace(/\.mp4$/, '.webm')" type="video/webm">
+                </video>
+                <img v-else :key="gallery.items[gallery.index].src" :src="gallery.items[gallery.index].src" :alt="gallery.items[gallery.index].caption">
+              </transition>
+              <button v-if="gallery.items.length > 1" type="button" class="g-nav prev" id="g-prev" @click="stepGallery(-1)" aria-label="Sebelumnya">‹</button>
+              <button v-if="gallery.items.length > 1" type="button" class="g-nav next" id="g-next" @click="stepGallery(1)" aria-label="Berikutnya">›</button>
+            </div>
+            <p class="g-cap" v-if="gallery.items.length"><b>{{ gallery.index + 1 }}/{{ gallery.items.length }}</b> {{ gallery.items[gallery.index].caption }}</p>
+            <div class="g-thumbs" v-if="gallery.items.length > 1">
+              <button v-for="(it, k) in gallery.items" :key="it.src" type="button" :class="{ on: k === gallery.index }" @click="gallery.index = k" :aria-label="'Gambar ' + (k + 1)">
+                <img :src="it.src" alt="" loading="lazy">
+                <span v-if="it.video" class="play sm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+              </button>
+            </div>
+          </div>
+
+          <aside class="g-detail" v-if="gallery.project">
+            <div class="card-meta">
+              <span class="kind">{{ gallery.project.kind }}</span>
+              <span v-if="gallery.project.status" class="badge">{{ gallery.project.status }}</span>
+            </div>
+            <h3>{{ gallery.project.title }}</h3>
+            <p>{{ gallery.project.text }}</p>
+            <ul v-if="gallery.project.points"><li v-for="pt in gallery.project.points" :key="pt">{{ pt }}</li></ul>
+            <div class="chips sm"><span v-for="t in gallery.project.tags" :key="t">{{ t }}</span></div>
+            <div class="g-links">
+              <a v-if="gallery.project.demo" :href="gallery.project.demo" target="_blank" rel="noopener" class="btn primary sm">Lihat demo ↗</a>
+              <a v-if="gallery.project.repo" :href="gallery.project.repo" target="_blank" rel="noopener" class="btn ghost sm">GitHub ↗</a>
+            </div>
+          </aside>
+
+          <button type="button" class="modal-close" id="modal-close" @click="closeGallery" aria-label="Tutup">×</button>
+        </div>
+      </div>
+    </transition>
+
+    <div class="toast" :class="{ show: toast }" role="status" aria-live="polite">{{ toast }}</div>
+  </div>
+
+  <!-- Library (disimpan di folder vendor/ agar tidak bergantung pada CDN) -->
+  <script defer src="vendor/vue.global.prod.js"></script>
+  <script defer src="vendor/gsap.min.js"></script>
+  <script defer src="vendor/ScrollTrigger.min.js"></script>
+  <script defer src="vendor/Flip.min.js"></script>
+  <script defer src="vendor/motion.js"></script>
+
+  <!-- Kode situs (hasil kompilasi TypeScript di src/ts) -->
+  <script defer src="js/data.js"></script>
+  <script defer src="js/effects.js"></script>
+  <script defer src="js/app.js"></script>
+</body>
+</html>

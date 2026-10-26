@@ -1,0 +1,46 @@
+/* =========================================================
+   responsive.css — tablet, ponsel, dan gerak dikurangi
+   ========================================================= */
+@media (max-width: 1080px) {
+  .nav-links a { padding: 8px 9px; font-size: .88rem; }
+  .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .certs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .nav-links, .nav-cta { display: none; }
+  .burger { display: block; }
+  .hero-grid, .about-grid, .contact { grid-template-columns: 1fr; }
+  .hero-grid { gap: 32px; }
+  .hero-photo { order: -1; width: min(78%, 340px); }
+  .modal-card.with-detail { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .projects { grid-template-columns: 1fr; }
+  .exp { grid-template-columns: 1fr; gap: 10px; }
+  .exp::before { display: none; }
+  .exp-side { padding-top: 0; }
+  .exp-dot { top: 4px; }
+  .media.mosaic, .media.even { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .media-item.big { grid-row: auto; aspect-ratio: 16 / 10; }
+  .certs { grid-template-columns: 1fr; }
+  .edu { flex-direction: column; }
+  .hero-stats { gap: 24px; }
+  .float-chip { font-size: .74rem; padding: 6px 11px; }
+  .float-chip.c1 { left: -6%; }
+  .float-chip.c2 { right: -6%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
+
+@media (max-width: 900px) {
+  .design { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .design-media { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .design-body { padding: 22px 20px; }
+}

@@ -1,0 +1,94 @@
+/* =========================================================
+   components.css — tombol, chip, badge, kartu, galeri, toast
+   ========================================================= */
+
+/* ---------- Tombol ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 24px; border-radius: 999px; font-weight: 600; font-size: .95rem;
+  transition: background .25s, color .25s, border-color .25s, box-shadow .3s, transform .3s var(--ease);
+}
+.btn.sm { padding: 8px 16px; font-size: .86rem; }
+.btn.primary { background: var(--accent); color: #fff; box-shadow: 0 8px 20px -10px rgba(59, 130, 246, .7); }
+.btn.primary:hover { background: var(--accent-strong); transform: translateY(-1px); }
+.btn.ghost { border: 1.5px solid var(--line); color: var(--ink); background: #fff; }
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent-strong); }
+
+/* ---------- Chip & badge ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips span { padding: 6px 12px; border-radius: 999px; font-size: .84rem; font-weight: 500; color: var(--ink-2); background: #fff; border: 1px solid var(--line); }
+.chips.sm span { padding: 4px 10px; font-size: .76rem; background: var(--bg-alt); border-color: transparent; }
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: .74rem; font-weight: 600; color: var(--ink-2); background: var(--bg-alt); }
+.badge.accent { color: var(--accent-strong); background: var(--accent-soft); }
+.badge.live { color: var(--ok); background: var(--ok-soft); }
+.badge.live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ok); }
+.badge.warn { color: var(--warn); background: var(--warn-soft); }
+.kind { font-size: .8rem; color: var(--muted); font-weight: 500; }
+
+/* ---------- Kartu ---------- */
+.card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+.card-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.link { display: inline-flex; align-items: center; min-height: 40px; font-size: .88rem; font-weight: 600; color: var(--accent-strong); }
+.link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Galeri / detail ---------- */
+.modal {
+  position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: 16px;
+  background: rgba(15, 23, 42, .55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+}
+.modal-card {
+  position: relative; width: min(980px, 100%); max-height: calc(100vh - 32px); overflow: auto;
+  background: #fff; border-radius: 22px; padding: 18px; box-shadow: var(--shadow-lg);
+  display: grid; gap: 20px;
+}
+.modal-card.with-detail { width: min(1180px, 100%); grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-items: start; }
+.g-media { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.g-stage { position: relative; aspect-ratio: 16 / 10; max-width: 100%; border-radius: 14px; overflow: hidden; background: #0f172a; }
+.g-stage img, .g-stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.g-nav {
+  position: absolute; top: 50%; z-index: 2; width: 42px; height: 42px; margin-top: -21px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 1.6rem; line-height: 1; color: var(--ink); background: rgba(255, 255, 255, .92);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, .2); transition: transform .3s var(--ease), background .2s;
+}
+.g-nav:hover { background: #fff; transform: scale(1.06); }
+.g-nav.prev { left: 12px; } .g-nav.next { right: 12px; }
+.g-cap { font-size: .92rem; color: var(--ink-2); }
+.g-cap b { color: var(--accent-strong); margin-right: 6px; font-variant-numeric: tabular-nums; }
+.g-thumbs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+.g-thumbs button { position: relative; flex: none; width: 84px; aspect-ratio: 16 / 10; border-radius: 8px; overflow: hidden; border: 2px solid transparent; opacity: .6; transition: opacity .2s, border-color .2s; }
+.g-thumbs button.on { opacity: 1; border-color: var(--accent); }
+.g-thumbs img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.g-detail { display: flex; flex-direction: column; gap: 12px; padding: 8px 6px 4px; min-width: 0; }
+.g-detail h3 { font-size: 1.4rem; }
+.g-detail p, .g-detail li { color: var(--ink-2); font-size: .95rem; }
+.g-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+.modal-close {
+  position: absolute; top: 10px; right: 10px; z-index: 3; width: 38px; height: 38px; border-radius: 50%;
+  font-size: 1.5rem; line-height: 1; background: #fff; color: var(--ink); box-shadow: 0 2px 8px rgba(15, 23, 42, .18);
+}
+.modal-close:hover { color: var(--accent-strong); }
+.modal-enter-active, .modal-leave-active { transition: opacity .3s; }
+.modal-enter-active .modal-card, .modal-leave-active .modal-card { transition: transform .4s var(--ease); }
+.modal-enter-from, .modal-leave-to { opacity: 0; }
+.modal-enter-from .modal-card { transform: translateY(24px) scale(.98); }
+.fade-enter-active, .fade-leave-active { transition: opacity .35s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
+/* tombol putar video */
+.play {
+  position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; margin: -26px 0 0 -26px; z-index: 2;
+  display: grid; place-items: center; border-radius: 50%; color: var(--accent-strong); background: rgba(255, 255, 255, .92);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, .25); transition: transform .3s var(--ease);
+}
+.play svg { width: 22px; height: 22px; margin-left: 3px; }
+.play.sm { width: 24px; height: 24px; margin: -12px 0 0 -12px; }
+.play.sm svg { width: 12px; height: 12px; margin-left: 2px; }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); z-index: 95;
+  transform: translate(-50%, calc(100% + 40px)); visibility: hidden;
+  padding: 12px 20px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 600; font-size: .9rem;
+  transition: transform .4s var(--ease), visibility 0s .4s;
+}
+.toast.show { transform: translate(-50%, 0); visibility: visible; transition: transform .4s var(--ease), visibility 0s; }

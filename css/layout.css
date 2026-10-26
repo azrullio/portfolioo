@@ -1,0 +1,54 @@
+/* =========================================================
+   layout.css — navigasi, bagian halaman, footer
+   ========================================================= */
+
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 70; background: var(--accent); transform-origin: left; transform: scaleX(0); }
+
+/* ---------- Navigasi ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 60;
+  background: rgba(255, 255, 255, .86);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s, box-shadow .3s;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.nav.scrolled, .nav.open { border-bottom-color: var(--line); box-shadow: 0 6px 20px -16px rgba(15, 23, 42, .25); }
+.nav-in { height: var(--nav-h); display: flex; align-items: center; gap: 24px; }
+.brand { font-weight: 800; font-size: 1.25rem; letter-spacing: -.03em; color: var(--ink); }
+.brand span { color: var(--accent); }
+.nav-links { display: flex; gap: 4px; margin-left: auto; }
+.nav-links a {
+  position: relative; padding: 8px 12px; border-radius: 999px;
+  font-size: .92rem; font-weight: 500; color: var(--muted);
+  transition: color .25s, background .25s;
+}
+.nav-links a:hover { color: var(--ink); background: var(--bg-alt); }
+.nav-links a.active { color: var(--accent-strong); background: var(--accent-soft); }
+.nav-cta { flex: none; }
+
+.burger { display: none; margin-left: auto; width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line); position: relative; }
+.burger i { position: absolute; left: 11px; right: 11px; height: 2px; border-radius: 2px; background: var(--ink); transition: transform .35s var(--ease), opacity .2s; }
+.burger i:nth-child(1) { top: 14px; } .burger i:nth-child(2) { top: 20px; } .burger i:nth-child(3) { top: 26px; }
+.nav.open .burger i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav.open .burger i:nth-child(2) { opacity: 0; }
+.nav.open .burger i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.mobile-menu { position: absolute; top: 100%; left: 0; right: 0; display: grid; padding: 8px clamp(16px, 4vw, 32px) 16px; gap: 2px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; box-shadow: 0 24px 40px -24px rgba(15, 23, 42, .3); max-height: calc(100vh - var(--nav-h)); overflow-y: auto; }
+.mobile-menu a { padding: 12px 14px; border-radius: 12px; font-weight: 600; color: var(--ink-2); }
+.mobile-menu a.active { background: var(--accent-soft); color: var(--accent-strong); }
+.drop-enter-active, .drop-leave-active { transition: opacity .25s, transform .3s var(--ease); }
+.drop-enter-from, .drop-leave-to { opacity: 0; transform: translateY(-8px); }
+
+/* ---------- Bagian ---------- */
+section { scroll-margin-top: var(--nav-h); }
+.section { padding-block: clamp(72px, 9vw, 112px); }
+.section.alt { background: var(--bg-alt); }
+.sec-head { margin-bottom: 40px; }
+.sec-head.center { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.sec-head .lead { margin-top: 12px; }
+
+/* ---------- Footer ---------- */
+.footer { border-top: 1px solid var(--line); padding-block: 26px calc(26px + env(safe-area-inset-bottom, 0px)); }
+.footer-in { display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; font-size: .88rem; color: var(--muted); }
+.footer-in a { color: var(--accent-strong); font-weight: 600; padding-block: 8px; margin-block: -8px; }
