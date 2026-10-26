@@ -69,7 +69,7 @@ Tambahkan ke `designs` di `data.ts`. Gambar disimpan di `assets/desain/`. Pakai 
 ## Sebelum hosting
 
 1. Di `src/ts/data.ts`, isi `email` dan url `LinkedIn` / `Instagram` (jika kosong, otomatis disembunyikan), lalu jalankan `npm run build`. Tanpa Node.js, ubah langsung di `js/data.js`.
-2. Setelah situs online, ganti isi `og:image` di `index.html` menjadi alamat lengkap, mis. `https://azrullio.github.io/assets/og-image.png`, agar gambar pratinjau muncul saat link dibagikan.
+2. Setelah situs online, ganti isi `og:image` di `index.html` menjadi alamat lengkap, mis. `https://azrullio.github.io/portfolioo/assets/og-image.png` (sudah diisi untuk repositori portfolioo), agar gambar pratinjau muncul saat link dibagikan.
 
 ## Hosting di GitHub Pages (gratis)
 
