@@ -63,6 +63,13 @@
             shot('lapor-progres', 'Progres per item RAB: bobot, volume kontrak, volume terpasang, dan persentase progres.'),
             shot('lapor-evaluasi', 'Evaluasi terhadap data berlabel manual: precision 0,98, recall 1,00, dan F1 0,99 pada data contoh minggu 1–6.'),
         ],
+        lovequest: [
+            shot('lovequest-level1', 'Level 1 "First Hello": Dina dan Diran berjalan di padang bunga sambil membawa hati. Panel kiri atas menunjukkan level dan jumlah hati yang terkumpul.'),
+            shot('lovequest-tangkap', 'Saat karakter berhasil ditangkap, hati pixel beterbangan dan penghitung naik (1/6). Kursor hijau berarti cubitan terdeteksi.'),
+            shot('lovequest-clear', 'Layar "Level Clear!" sebelum lanjut ke level berikutnya yang lebih cepat.'),
+            shot('lovequest-level3', 'Level 3 "Shy Hearts": 10 karakter yang kabur saat tangan mendekat.'),
+            shot('lovequest-selesai', 'Semua hati terkumpul. Tekan R untuk main lagi. Tangkapan layar ini diambil dalam mode mouse; saat dimainkan dengan webcam, latarnya adalah video kamera dan kerangka tangan ikut tampil.'),
+        ],
         nara: [
             shot('nara-topup', 'Kasus top up belum masuk: Nara mengecek transaksi, menemukan dana tertahan di settlement, lalu langsung memasukkan saldonya. Diagram di kanan menyala mengikuti langkah agent.'),
             shot('nara-pesanan', 'Kasus pesanan makanan terlambat: Nara menghubungi resto, menjelaskan penyebabnya, lalu menawarkan pilihan tunggu dengan voucher atau batal dengan refund.'),
@@ -100,9 +107,9 @@
         skills: [
             { title: 'Frontend', items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Vue.js', 'Tailwind CSS', 'Bootstrap'] },
             { title: 'Backend & Database', items: ['PHP', 'Laravel', 'Node.js', 'MySQL / MariaDB'] },
-            { title: 'AI & Data', items: ['Claude API', 'AI agent & tools', 'n8n', 'Python', 'Streamlit', 'pandas', 'Scikit-learn'] },
+            { title: 'AI & Data', items: ['Claude API', 'AI agent & tools', 'n8n', 'Python', 'Streamlit', 'pandas', 'Scikit-learn', 'OpenCV', 'MediaPipe'] },
             { title: 'Desain', items: ['Canva', 'Figma', 'Figma Make'] },
-            { title: 'Game, 3D & AR', items: ['Unity (C#)', 'HTML5 Canvas', 'GSAP', 'A-Frame', 'AR.js'] },
+            { title: 'Game, 3D & AR', items: ['Pygame', 'Unity (C#)', 'HTML5 Canvas', 'GSAP', 'A-Frame', 'AR.js'] },
         ],
         filters: [
             { id: 'all', label: 'Semua' },
@@ -128,6 +135,14 @@
                 points: ['Tools di simulasi: refund, voucher, rekonsiliasi saldo, amankan akun, laporkan mitra, eskalasi', 'Mendeteksi emosi dan niat pengguna, serta mengingat konteks percakapan', 'Mode offline berbasis aturan dan mode Claude, plus workflow n8n siap impor', 'Simulator web ala WhatsApp dengan diagram alur yang menyala langkah demi langkah'],
                 tags: ['Node.js', 'Claude API', 'n8n'],
                 repo: GH + 'nara-ai-agent', shots: SHOTS.nara,
+            },
+            {
+                id: 'lovequest', kind: 'Game pixel · Computer vision', cats: ['play', 'ai'],
+                title: 'Love Quest · Game Hand Tracking',
+                text: 'Game pixel art "tangkap karakter" yang dimainkan dengan tangan di depan webcam: cubit jempol dan telunjuk tepat di atas Dina atau Diran untuk mengumpulkan hati yang mereka bawa.',
+                points: ['MediaPipe Hands mendeteksi 21 titik sendi tangan dari kamera', 'Cubitan dihitung dari jarak jempol ke telunjuk dibagi ukuran tangan, jadi tetap akurat walau tangan dekat atau jauh', '3 level: makin cepat, dan di level terakhir karakter kabur saat tangan mendekat', 'Pixel art dan suara chiptune dibuat langsung lewat kode, plus mode mouse tanpa kamera'],
+                tags: ['Python', 'OpenCV', 'MediaPipe', 'Pygame'],
+                repo: GH + 'love-quest', shots: SHOTS.lovequest,
             },
             {
                 id: 'jetis', featured: true, kind: 'Game edukasi · Web', cats: ['play', 'web'],
