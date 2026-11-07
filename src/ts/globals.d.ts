@@ -21,6 +21,7 @@ interface Project {
   cats: string[];        // dipakai filter: ai, web, app, play, data
   status?: string;       // mis. "Prototipe", "Dalam pengembangan"
   featured?: boolean;    // tampil dengan label "Unggulan"
+  illustration?: boolean; // gambar berupa ilustrasi, bukan tangkapan layar
   demo?: string;
   repo?: string;
   shots?: Shot[];

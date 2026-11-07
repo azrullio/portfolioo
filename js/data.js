@@ -63,6 +63,10 @@
             shot('lapor-progres', 'Progres per item RAB: bobot, volume kontrak, volume terpasang, dan persentase progres.'),
             shot('lapor-evaluasi', 'Evaluasi terhadap data berlabel manual: precision 0,98, recall 1,00, dan F1 0,99 pada data contoh minggu 1–6.'),
         ],
+        // Ilustrasi sampul untuk proyek yang belum punya tangkapan layar (bukan tampilan aplikasi asli)
+        jkn: [shot('jkn-ilustrasi', 'Ilustrasi alur penelitian: data kuesioner, preprocessing, tiga model (Random Forest, SVM, CatBoost), lalu validasi statistik untuk memilih model terbaik. Bukan tangkapan layar.')],
+        debt: [shot('debt-ilustrasi', 'Ilustrasi konsep gameplay: siklus kelola modal, beri pinjaman, tagih utang, lalu kembangkan usaha. Game masih dikembangkan di Unity, jadi ini bukan tangkapan layar.')],
+        kost: [shot('kost-ilustrasi', 'Ilustrasi proyek: aplikasi pengelolaan kamar kos dengan login dan pendaftaran akun. Bukan tangkapan layar aplikasi.')],
         aicourse: [
             shot('aicourse-chat', 'Chat CS kursus: calon siswa bisa bertanya soal course, biaya, dan lama belajar. AI menjawab hanya dari katalog course dan FAQ.'),
             shot('aicourse-bayar', 'Halaman simulasi pembayaran (mode mock): order Rp599.000 berubah dari pending menjadi paid. Dengan Server Key Midtrans, halaman ini diganti link Snap asli.'),
@@ -216,19 +220,19 @@
                 demo: IO + 'azrstudio/', repo: GH + 'azrstudio', shots: SHOTS.azr,
             },
             {
-                id: 'jkn', status: 'Sedang berjalan', kind: 'Skripsi · Machine learning', cats: ['data', 'ai'], icon: 'chart',
+                id: 'jkn', status: 'Sedang berjalan', kind: 'Skripsi · Machine learning', cats: ['data', 'ai'], shots: SHOTS.jkn, illustration: true,
                 title: 'Klasifikasi Kepuasan Pengguna Mobile JKN',
                 text: 'Membandingkan Random Forest, SVM, dan CatBoost untuk mengklasifikasikan kepuasan pengguna Mobile JKN, dengan validasi statistik.',
                 tags: ['Python', 'Scikit-learn', 'CatBoost'],
             },
             {
-                id: 'debt', status: 'Dalam pengembangan', kind: 'Game simulasi PC', cats: ['play'], icon: 'game',
+                id: 'debt', status: 'Dalam pengembangan', kind: 'Game simulasi PC', cats: ['play'], shots: SHOTS.debt, illustration: true,
                 title: 'Debt Collector Simulator',
                 text: 'Game simulasi bergaya Landlord Simulator: mengelola modal, menyalurkan pinjaman, dan menagih utang.',
                 tags: ['Unity', 'C#'],
             },
             {
-                id: 'kost', status: 'Dalam pengembangan', kind: 'Aplikasi web', cats: ['app'], icon: 'home',
+                id: 'kost', status: 'Dalam pengembangan', kind: 'Aplikasi web', cats: ['app'], shots: SHOTS.kost, illustration: true,
                 title: 'Kost · Manajemen Kamar',
                 text: 'Aplikasi Laravel dengan autentikasi untuk mengelola kamar kos. Fitur kelola kamar masih dikerjakan.',
                 tags: ['Laravel', 'Blade'],

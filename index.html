@@ -132,7 +132,7 @@
               <div class="card lift">
                 <button v-if="p.shots" type="button" class="thumb" @click="openProject(p, 0)" :aria-label="'Lihat gambar ' + p.title">
                   <img :src="p.shots[0].src" :alt="p.shots[0].caption" loading="lazy">
-                  <span class="thumb-count">{{ p.shots.length }} gambar</span>
+                  <span class="thumb-count">{{ p.illustration ? 'Ilustrasi' : p.shots.length + ' gambar' }}</span>
                 </button>
                 <div v-else class="thumb placeholder" :class="'ph-' + (p.icon || 'web')" aria-hidden="true">
                   <span class="ph-icon"></span>
