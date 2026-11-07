@@ -63,6 +63,10 @@
             shot('lapor-progres', 'Progres per item RAB: bobot, volume kontrak, volume terpasang, dan persentase progres.'),
             shot('lapor-evaluasi', 'Evaluasi terhadap data berlabel manual: precision 0,98, recall 1,00, dan F1 0,99 pada data contoh minggu 1–6.'),
         ],
+        aicourse: [
+            shot('aicourse-chat', 'Chat CS kursus: calon siswa bisa bertanya soal course, biaya, dan lama belajar. AI menjawab hanya dari katalog course dan FAQ.'),
+            shot('aicourse-bayar', 'Halaman simulasi pembayaran (mode mock): order Rp599.000 berubah dari pending menjadi paid. Dengan Server Key Midtrans, halaman ini diganti link Snap asli.'),
+        ],
         lovequest: [
             shot('lovequest-level1', 'Level 1 "First Hello": Dina dan Diran berjalan di padang bunga sambil membawa hati. Panel kiri atas menunjukkan level dan jumlah hati yang terkumpul.'),
             shot('lovequest-tangkap', 'Saat karakter berhasil ditangkap, hati pixel beterbangan dan penghitung naik (1/6). Kursor hijau berarti cubitan terdeteksi.'),
@@ -107,7 +111,7 @@
         skills: [
             { title: 'Frontend', items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'Vue.js', 'Tailwind CSS', 'Bootstrap'] },
             { title: 'Backend & Database', items: ['PHP', 'Laravel', 'Node.js', 'MySQL / MariaDB'] },
-            { title: 'AI & Data', items: ['Claude API', 'AI agent & tools', 'n8n', 'Python', 'Streamlit', 'pandas', 'Scikit-learn', 'OpenCV', 'MediaPipe'] },
+            { title: 'AI & Data', items: ['Claude API', 'Gemini API', 'AI agent & tools', 'n8n', 'Python', 'Streamlit', 'pandas', 'Scikit-learn', 'OpenCV', 'MediaPipe'] },
             { title: 'Desain', items: ['Canva', 'Figma', 'Figma Make'] },
             { title: 'Game, 3D & AR', items: ['Pygame', 'Unity (C#)', 'HTML5 Canvas', 'GSAP', 'A-Frame', 'AR.js'] },
         ],
@@ -135,6 +139,14 @@
                 points: ['Tools di simulasi: refund, voucher, rekonsiliasi saldo, amankan akun, laporkan mitra, eskalasi', 'Mendeteksi emosi dan niat pengguna, serta mengingat konteks percakapan', 'Mode offline berbasis aturan dan mode Claude, plus workflow n8n siap impor', 'Simulator web ala WhatsApp dengan diagram alur yang menyala langkah demi langkah'],
                 tags: ['Node.js', 'Claude API', 'n8n'],
                 repo: GH + 'nara-ai-agent', shots: SHOTS.nara,
+            },
+            {
+                id: 'aicourse', status: 'Prototipe', kind: 'AI agent · Platform kursus', cats: ['ai', 'web'],
+                title: 'Course AI · CS Platform Kursus',
+                text: 'AI customer service untuk platform kursus online: menjawab pertanyaan soal course, membuat link pembayaran, mengecek status bayar, dan meneruskan masalah ke admin.',
+                points: ['4 tool AI: daftar course, buat link pembayaran, cek status pembayaran, hubungi admin', 'Aman: harga selalu dari data server, status "paid" hanya dari webhook Midtrans yang tanda tangannya terverifikasi', 'Menolak instruksi yang meminta ubah harga atau akses gratis', 'Bisa memakai Claude atau Gemini, plus generator ide konten belajar harian'],
+                tags: ['Node.js', 'Express', 'Claude API', 'Gemini', 'Midtrans'],
+                repo: GH + 'ai-course', shots: SHOTS.aicourse,
             },
             {
                 id: 'lovequest', kind: 'Game pixel · Computer vision', cats: ['play', 'ai'],
